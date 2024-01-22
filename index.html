@@ -1,0 +1,123 @@
+<hr style="clear: left; border-color: #2c7bd1" />
+<div class="mainFrame" style="min-width: 300px">
+<h3 style="text-align: center;"><img alt="" id="" role="presentation" src="https://static.deledao.com/default/images/computerSmall.png" /> <span style="color: #e8425a; vertical-align: 50%">&nbsp;&nbsp;If you are seeing this page.</span><br />
+<span style="color: #e8425a; vertical-align: 50%">You are not properly signed into the browser.</span></h3>
+
+<h5 style="text-align: center;"><strong>Please make sure you are logged into chrome and synced.</strong></h5>
+
+<h5 style="text-align: center;"><strong>Click on your Initial and turn on Sync.</strong></h5>
+
+<div style="text-align:center">
+<figure class="fsImage" style="display:inline-block"><picture><img alt="Sync11" data-image-sizes="[{%22url%22:%22https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1703168394/bscsdorg/r9zg4e0zyu9v8dlfovhm/Sync11.png%22,%22width%22:256},{%22url%22:%22https://resources.finalsite.net/images/f_auto,q_auto/v1703168394/bscsdorg/r9zg4e0zyu9v8dlfovhm/Sync11.png%22,%22width%22:339}]" data-resource-description="" data-resource-filename="Sync11.png" data-resource-uuid="96243ee7-7a7f-410e-aab2-af73a744707e" dldanalyzed="true" id="" src="" style="" /></picture></figure>
+</div>
+
+<h5 style="text-align: center;"><strong>After this please restart the chrome browser completely and&nbsp;</strong></h5>
+
+<h5 style="text-align: center;"><strong>your Rule should not say undefined.</strong></h5>
+
+<div style="text-align:center">
+<figure class="fsImage" style="display:inline-block"><picture><img alt="Sync22" data-image-sizes="[{%22url%22:%22https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1703168435/bscsdorg/ingezfckdrqcmfyiytgw/Sync22.png%22,%22width%22:256},{%22url%22:%22https://resources.finalsite.net/images/f_auto,q_auto/v1703168435/bscsdorg/ingezfckdrqcmfyiytgw/Sync22.png%22,%22width%22:306}]" data-resource-description="" data-resource-filename="Sync22.png" data-resource-uuid="f87bdbc3-d9bc-4012-a5a5-892b96f4c587" dldanalyzed="true" id="" src="" style="" /></picture></figure>
+</div>
+
+<p style="text-align: center;">&nbsp;</p>
+
+<p style="text-align: center;">&nbsp;</p>
+
+<div class="notice">
+<p style="text-align: center;">&nbsp;</p>
+</div>
+</div>
+<script>
+			const cururl = new URL(window.location.href);
+			const curparams = new URLSearchParams(cururl.search);
+
+			let blockedUrl = decodeURIComponent(curparams.get("site"));
+			if (blockedUrl && blockedUrl.length >= 256)
+				blockedUrl = blockedUrl.substring(0, 256) + "...";
+
+			document.getElementById("website").innerHTML = blockedUrl;
+			let categoryParameter = curparams.get("category");
+      if (categoryParameter)
+        document.getElementById("category").innerHTML = categoryParameter;
+			document.getElementById("cname").innerHTML = curparams.get("cname");
+
+			let year = new Date().getFullYear();
+			document.getElementById("copyright-year").innerHTML = year;
+
+			let title = curparams.get("title");
+			if (title) document.title = "Blocked: " + title;
+			else if (blockedUrl)
+				document.title = "Blocked: " + blockedUrl.substring(0, 80);
+
+			let policy = "school";
+			let byParent = false;
+			let policyGroup = curparams.get("pgroup");
+			if (policyGroup) {
+				if (policyGroup === "school") {
+					policy = "school";
+				} else if (policyGroup === "parent") {
+					policy = "parent";
+					byParent = true;
+				} else if (policyGroup === "classroom") {
+					policy = "classroom";
+				}
+			} else {
+				if (curparams.get("parent") === "true") {
+					policy = "parent";
+					byParent = true;
+				} else {
+					policy = "school";
+				}
+			}
+			document.getElementById("blocksrc").innerHTML = policy;
+
+      let vendor = curparams.get("vendor");
+			if (vendor === 'hapara') {
+				document.getElementById("vendor").innerHTML = 'Hāpara';
+        document.getElementById("footer").style.display = "none";
+			}
+
+			let norc = curparams.get("norc");
+			if (norc) {
+				document.getElementById("reclassBlk").style.display = "none";
+			} else {
+				let reclassifyurl =
+					`https://static.deledao.com/${vendor ? vendor : "default"}/reclassification.html?`;
+
+				let params = new URLSearchParams("");
+				params.append("site", curparams.get("site"));
+				params.append("category", curparams.get("category"));
+				params.append("cname", curparams.get("cname"));
+
+				document
+					.getElementById("reclassify")
+					.setAttribute("href", reclassifyurl + params.toString());
+			}
+
+			let nodwl = curparams.get("nodwl");
+			if (nodwl) {
+				document.getElementById("nodwl").style.display = "block";
+			} else if (byParent) {
+				document.getElementById("parentblock").style.display = "block";
+			} else {
+				document.getElementById("dynWLform").style.display = "block";
+				document.getElementById("antiDynWLform").style.display = "none";
+			}
+
+			// allowed list
+			let isallow = document.getElementById("isallowed");
+			let allowedStr = curparams.get("allowed");
+			if (allowedStr) {
+				allowedStr = decodeURIComponent(allowedStr);
+
+				let allowedList = allowedStr.split(",");
+				let ul = document.getElementById("allowedlist");
+				for (let i = 0; i < allowedList.length; i++) {
+					let li = document.createElement("li");
+					li.appendChild(document.createTextNode(allowedList[i]));
+					ul.appendChild(li);
+				}
+				isallow.style.display = "block";
+			} else {
+				isallow.style.display = "none";
+			}</script><script defer="defer" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;839092406e137277&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;5fb20d0601a643df91b59062182249a8&quot;}" crossorigin="anonymous"></script>
